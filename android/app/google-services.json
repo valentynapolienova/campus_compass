@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "772774871205",
+    "project_id": "hahaton-2bbfc",
+    "storage_bucket": "hahaton-2bbfc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772774871205:android:3b98c861edce9c6b574d4c",
+        "android_client_info": {
+          "package_name": "com.polienova.kotlov.int20h.int20h"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "772774871205-0e7hanto6cfrbloars3j374qn85slunf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.polienova.kotlov.int20h.int20h",
+            "certificate_hash": "5bbd75aa9dda93a0b281951ad6eb0838db4252c2"
+          }
+        },
+        {
+          "client_id": "772774871205-0ihrhj7ir7ofvm7v5uiikflo3i6jkbl5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADrdecE4FeJi3bloQfw2v-t-qodU-Mb70"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "772774871205-0ihrhj7ir7ofvm7v5uiikflo3i6jkbl5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
