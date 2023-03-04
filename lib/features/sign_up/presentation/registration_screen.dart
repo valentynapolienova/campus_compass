@@ -11,6 +11,7 @@ import 'package:int20h/core/util/input_converter.dart';
 import 'package:int20h/core/util/pixel_sizer.dart';
 import 'package:int20h/core/widgets/app_bars/base_app_bar.dart';
 import 'package:int20h/core/widgets/buttons/base_button.dart';
+import 'package:int20h/features/sign_up/domain/entities/university.dart';
 import 'package:int20h/features/sign_up/presentation/components/auth_text_field.dart';
 import 'package:int20h/features/sign_up/presentation/components/choose_bottom_sheet.dart';
 import 'package:int20h/injection_container.dart';
@@ -35,8 +36,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   String name = "";
   String email = "";
   String password = "";
-  int? groupId;
-  int? universityId;
+
+  @override
+  void initState() {
+    cubit.getUniversities();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,11 +121,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       ),
                       InkWell(
                         onTap: () {
-                          showCustomBottomSheet(context,  ChooseBottomSheet(title: "Choose university", options: ["KPI im Ihor Sikorsky", "Another uni", "Another 2"], onTap: () {}, cubit: cubit,),);
+                          showCustomBottomSheet(context,  ChooseBottomSheet(
+                            chosenId: state.universityId ?? -1,
+                            title: "Choose your university", options: state.universities, onTap: cubit.chooseUniversity, cubit: cubit,),);
 
                         },
                         child: AuthTextField(
-                            hintText: 'Choose your university',
+hintColor: state.universityId == null ? null : CColors.black,
+                            hintText: state.universityId == null ? 'Choose your university' : state.universities.firstWhere((element) => element.id == state.universityId).name ?? '',
                           onChanged: (s) {
                           },
                          enabled: false,
@@ -128,16 +136,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       ), SizedBox(
                         height: 12.ph,
                       ),
-                      InkWell(
-                        onTap: (){
-                          showCustomBottomSheet(context,  ChooseBottomSheet(title: "Choose university", options: ["KPI im Ihor Sikorsky"], onTap: () {}, cubit: cubit,),);
-
-                        },
-                        child: AuthTextField(
-                            hintText: 'Choose your group',
-                          onChanged: (s) {
+                      IgnorePointer(
+                        ignoring: state.universityId == null,
+                        child: InkWell(
+                          onTap: (){
+                            showCustomBottomSheet(context,  ChooseBottomSheet(title: "Choose your group", options: state.groups, onTap: cubit.chooseGroup, cubit: cubit, chosenId: state.groupId ?? -1,),);
                           },
-                          enabled: false,
+                          child: AuthTextField(
+
+                            hintColor: state.groupId == null ? null : CColors.black,
+                            hintText: state.groupId == null ? 'Choose your group' : state.groups.firstWhere((element) => element.id == state.groupId).name ?? '',
+                            onChanged: (s) {
+                            },
+                            enabled: false,
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -175,12 +187,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         label: "Continue",
         onTap: () {
           if (InputChecker.checkEmail(email)) {
-            cubit.signUp(name, email, password);
+            cubit.signUp(name, email, password, state.groupId!);
           } else {
             cubit.setEmailValidationError();
           }
         },
-        isActive: name.isNotEmpty && email.isNotEmpty && password.length > 5,
+        isActive: name.isNotEmpty && email.isNotEmpty && password.length > 5 && state.groupId != null,
         isLoading: state is SignUpLoading,
         padding: EdgeInsets.symmetric(horizontal: 16.pw, vertical: 14.ph),
       );

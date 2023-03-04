@@ -8,7 +8,18 @@ abstract class SignUpState {
   List<Group> get groups => [];
 }
 
-class SignUpInitial extends SignUpState {}
+class SignUpInitial extends SignUpState {
+  @override
+  final int? groupId;
+  @override
+  final int? universityId;
+  @override
+  List<University> universities;
+  @override
+  List<Group> groups;
+
+  SignUpInitial({ this.groups = const [],  this.universities = const [],  this.universityId,  this.groupId});
+}
 
 class SignUpLoading extends SignUpState {
   @override

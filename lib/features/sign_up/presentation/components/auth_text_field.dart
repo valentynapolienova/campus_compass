@@ -15,6 +15,8 @@ class AuthTextField extends StatelessWidget {
     this.obscureText = false,
     this.hintSize = 16,
     this.enabled = true,
+    this.initValue,
+    this.hintColor,
   });
 
   final String hintText;
@@ -23,6 +25,8 @@ class AuthTextField extends StatelessWidget {
   final bool obscureText;
   final double hintSize;
   final bool enabled;
+  final String? initValue;
+  final Color? hintColor;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +40,7 @@ class AuthTextField extends StatelessWidget {
         ),
       ),
       child: BaseTextField(
+        initialValue: initValue,
         enabled: enabled,
         cursorColor: Colors.green,
         textAlign: TextAlign.center,
@@ -44,7 +49,7 @@ class AuthTextField extends StatelessWidget {
         style: gilroy.w500.s16.black,
         decoration: InputDecoration(
           hintText: hintText,
-          hintStyle: gilroy.w500.grey.copyWith(fontSize: hintSize),
+          hintStyle: gilroy.w500.copyWith(fontSize: hintSize, color: hintColor ?? CColors.grey),
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,
           disabledBorder: InputBorder.none,

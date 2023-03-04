@@ -6,6 +6,7 @@ class UserModel extends User {
   UserModel.fromJson(Map<String, dynamic> json) {
     email = json['email'];
     name = json['name'];
+    isTeacher = json['isTeacher'];
   }
 
   Map<String, dynamic> toJson() {

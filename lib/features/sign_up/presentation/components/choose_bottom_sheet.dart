@@ -12,13 +12,14 @@ import 'package:int20h/features/sign_up/presentation/cubit/sign_up_cubit/sign_up
 
 class ChooseBottomSheet extends StatelessWidget {
   const ChooseBottomSheet(
-      {Key? key, required this.title, required this.options, required this.onTap, required this.cubit})
+      {Key? key, required this.title, required this.options, required this.onTap, required this.cubit, required this.chosenId,})
       : super(key: key);
 
   final String title;
-  final List<String> options;
-  final Function() onTap;
+  final List options;
+  final Function(int) onTap;
   final SignUpCubit cubit;
+  final int chosenId;
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +46,10 @@ class ChooseBottomSheet extends StatelessWidget {
                               Padding(
                                 padding: EdgeInsets.only(bottom: 8.ph),
                                 child: OptionTile(
-                                  isChosen: true,
-                                  title: options[index],
+                                  isChosen: chosenId == options[index].id,
+                                  title: options[index].name,
                                   onTap: onTap,
+                                  id: options[index].id,
                                 ),
                               ),
                         ),
@@ -94,18 +96,19 @@ class BottomSheetMenuHeader extends StatelessWidget {
 
 class OptionTile extends StatelessWidget {
   const OptionTile(
-      {Key? key, required this.isChosen, required this.title, required this.onTap})
+      {Key? key, required this.isChosen, required this.title, required this.onTap, required this.id})
       : super(key: key);
 
   final bool isChosen;
   final String title;
-  final Function onTap;
+  final int id;
+  final Function(int) onTap;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        onTap();
+        onTap(id);
         Navigator.pop(context);
       },
       child: Container(

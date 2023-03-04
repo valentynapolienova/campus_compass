@@ -30,7 +30,7 @@ mixin AuthInjector on Injector {
     sl.registerLazySingleton<SignInRepository>(
         () => SignInRepositoryImpl(datasource: sl()));
     sl.registerLazySingleton<SignUpRepository>(
-        () => SignUpRepositoryImpl(datasource: sl()));
+        () => SignUpRepositoryImpl(signUpDatasource: sl()));
     sl.registerLazySingleton<TokenLocalRepository>(
         () => TokenLocalRepositoryImpl(tokenLocalDatasource: sl()));
 

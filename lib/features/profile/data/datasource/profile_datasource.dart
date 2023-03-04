@@ -15,7 +15,6 @@ class ProfileDatasourceImpl extends ProfileDatasource {
   @override
   Future<User> getUser() async {
     final response = await dio.get('/user');
-
     User user = UserModel.fromJson(response.data);
     return user;
   }

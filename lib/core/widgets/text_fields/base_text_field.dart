@@ -5,11 +5,12 @@ import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 
 import 'package:int20h/core/style/colors.dart';
 
-class BaseTextField extends TextField {
+class BaseTextField extends TextFormField {
   // @override
   // BaseInputDecoration? decoration;
 
   BaseTextField({
+    super.initialValue,
     super.decoration,
     super.key,
     super.controller,
@@ -39,19 +40,14 @@ class BaseTextField extends TextField {
     super.maxLengthEnforcement,
     super.onChanged,
     super.onEditingComplete,
-    super.onSubmitted,
-    super.onAppPrivateCommand,
     super.inputFormatters,
     super.enabled,
     super.cursorWidth = 2.0,
     super.cursorHeight,
     super.cursorRadius,
     super.cursorColor = CColors.white,
-    super.selectionHeightStyle = ui.BoxHeightStyle.tight,
-    super.selectionWidthStyle = ui.BoxWidthStyle.tight,
     super.keyboardAppearance,
     super.scrollPadding = const EdgeInsets.all(20.0),
-    super.dragStartBehavior = DragStartBehavior.start,
     super.enableInteractiveSelection,
     super.selectionControls,
     super.onTap,
@@ -60,9 +56,7 @@ class BaseTextField extends TextField {
     super.scrollController,
     super.scrollPhysics,
     super.autofillHints = const <String>[],
-    super.clipBehavior = Clip.hardEdge,
     super.restorationId,
-    super.scribbleEnabled = true,
     super.enableIMEPersonalizedLearning = true,
   }) {
     // this.decoration = decoration;

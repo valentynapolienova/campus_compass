@@ -2,13 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:int20h/core/style/colors.dart';
 import 'package:int20h/core/style/paddings.dart';
+import 'package:int20h/core/style/text_styles.dart';
 import 'package:int20h/core/util/pixel_sizer.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class BaseAppBar extends StatelessWidget with PreferredSizeWidget {
   final Widget? leftWidget;
   final Widget? rightWidget;
-  final Widget? centerWidget;
+  final String? title;
   final Color? backgroundColor;
   final bool isBackButton;
 
@@ -17,7 +18,7 @@ class BaseAppBar extends StatelessWidget with PreferredSizeWidget {
     Key? key,
     this.leftWidget,
     this.rightWidget,
-    this.centerWidget,
+    this.title,
     this.backgroundColor,
     this.isBackButton = false,
   }) : super(key: key);
@@ -54,7 +55,7 @@ class BaseAppBar extends StatelessWidget with PreferredSizeWidget {
           ),
         )
       ],
-      title: centerWidget,
+      title: Text(title ?? '', style: gilroy.w700.s20.black,),
       backgroundColor: backgroundColor ?? CColors.white,
       elevation: 0,
       centerTitle: true,

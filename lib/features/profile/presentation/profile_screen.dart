@@ -53,7 +53,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         return state is! UserLoading
             ? Scaffold(
                 appBar:  BaseAppBar(
-                  centerWidget: Text('Profile', style: gilroy.w700.s20.black,),
+                  title: 'Profile',
                 ),
                 backgroundColor: CColors.white,
                 body: Container(
