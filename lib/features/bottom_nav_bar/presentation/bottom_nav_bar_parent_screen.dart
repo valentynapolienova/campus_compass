@@ -21,8 +21,10 @@ class BottomNavBarParentScreen extends StatefulWidget {
 
 class _BottomNavBarParentScreenState extends State<BottomNavBarParentScreen> {
   late final List<Widget> pages = [
-    ProfileScreen(authCubit: widget.authCubit),
     Scaffold(),
+    Scaffold(),
+    Scaffold(),
+    ProfileScreen(authCubit: widget.authCubit),
   ];
 
   @override
@@ -31,10 +33,7 @@ class _BottomNavBarParentScreenState extends State<BottomNavBarParentScreen> {
       bloc: sl(),
       builder: (context, state) {
         return Scaffold(
-          extendBody: true,
-          backgroundColor: CColors.black,
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
+          backgroundColor: CColors.white,
           bottomNavigationBar: BottomNavBar(),
           body: pages[state.currentIndex],
         );
