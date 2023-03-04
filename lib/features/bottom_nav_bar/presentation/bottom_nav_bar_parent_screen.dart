@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:int20h/core/style/colors.dart';
+import 'package:int20h/features/map/presentation/map_add_screen.dart';
 import 'package:int20h/features/map/presentation/map_screen.dart';
 import 'package:int20h/features/notifications/presentation/notification_screen.dart';
 import 'package:int20h/features/profile/presentation/profile_screen.dart';

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:int20h/features/map/injection_container.dart';
 import 'package:int20h/features/profile/injector_container.dart';
 import 'package:int20h/features/sign_up/injection_container.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -15,7 +16,7 @@ final sl = GetIt.instance;
 
 const globalDio = 'global';
 
-class InjectionContainer extends Injector with AuthInjector, ProfileInjector, BottomNavBarInjector{}
+class InjectionContainer extends Injector with AuthInjector, ProfileInjector, BottomNavBarInjector, MapInjector{}
 
 abstract class Injector {
   @mustCallSuper

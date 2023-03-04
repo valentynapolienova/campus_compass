@@ -12,4 +12,15 @@ class LocationModel extends Location {
     type = json["type"];
   }
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['imgUrl'] = this.imgUrl;
+    data['type'] = this.type;
+    data['latitude'] = this.latitude;
+    data['longitude'] = this.longitude;
+    data['name'] = this.name;
+    data['description'] = this.description;
+    return data;
+  }
+
 }

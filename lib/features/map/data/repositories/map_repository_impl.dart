@@ -10,6 +10,13 @@ class MapRepositoryImpl extends MapRepository {
 
   MapRepositoryImpl({required this.mapDatasource,});
   @override
+  FutureFailable<Location> addNewLocation(Location location) {
+    return RepositoryRequestHandler<Location>()(
+      request: () => mapDatasource.addNewLocation(location),
+      defaultFailure: Failure(),
+    );
+  }
+  @override
   FutureFailable<List<Location>> getLocations() {
     return RepositoryRequestHandler<List<Location>>()(
       request: () => mapDatasource.getLocations(),

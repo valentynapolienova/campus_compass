@@ -70,5 +70,5 @@ class BaseAppBar extends StatelessWidget with PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size(100.w, 50.ph);
+  Size get preferredSize => Size(100.w, 60.ph);
 }

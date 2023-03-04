@@ -3,6 +3,8 @@ import 'package:int20h/features/map/domain/entities/location.dart';
 
 abstract class MapRepository{
 
+  FutureFailable<Location> addNewLocation(Location location);
+
   FutureFailable<List<Location>> getLocations();
 
 }
