@@ -19,7 +19,7 @@ class BottomNavBar extends StatelessWidget {
             backgroundColor: Colors.white,
             elevation: 10,
             selectedItemColor: CColors.black,
-            selectedLabelStyle: gilroy.s12.w700.black,
+            selectedLabelStyle: gilroy.s13.w700.black,
             unselectedLabelStyle: gilroy.s12.w500.grey,
             unselectedItemColor: CColors.grey,
             currentIndex: state.currentIndex,

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:int20h/features/profile/domain/entities/user.dart';
 import 'package:int20h/features/sign_up/domain/entities/auth_response.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -29,6 +30,7 @@ void main() async {
   await InjectionContainer().init();
 
   sl<AppConfig>();
+
   runApp(
     ResponsiveSizer(
       builder: (context, orientation, screenType) {
