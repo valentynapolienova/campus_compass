@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:int20h/core/style/colors.dart';
+import 'package:int20h/core/style/paddings.dart';
 import 'package:int20h/core/style/text_styles.dart';
 import 'package:int20h/core/util/pixel_sizer.dart';
 
@@ -29,16 +30,17 @@ class ProfileTile extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           color: CColors.white,
+          border: Border.all(color: CColors.borderGrey),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
           child: Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(12),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: bgColor ?? CColors.white,
-                  borderRadius: BorderRadius.circular(16),
+                  shape: BoxShape.circle,
                 ),
                 child: Icon(
                   icon,
@@ -52,13 +54,20 @@ class ProfileTile extends StatelessWidget {
                 label,
                 style: gilroy.s15.w500.black,
               ),
-              const Expanded(
+               Expanded(
                 child: Align(
                   alignment: Alignment.centerRight,
-                  child: Icon(
-                    Icons.arrow_forward_ios_sharp,
-                    color: CColors.grey,
-                    size: 20,
+                  child: Container(
+                    padding: const EdgeInsets.fromLTRB(5, 6, 4, 6),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: CColors.grey, width: 1),
+                    ),
+                    child: const Icon(
+                      Icons.arrow_forward_ios_sharp,
+                      color: CColors.grey,
+                      size: 12,
+                    ),
                   ),
                 ),
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:int20h/core/helper/images.dart';
 import 'package:int20h/core/helper/notification.dart';
 import 'package:int20h/core/style/colors.dart';
 import 'package:int20h/core/style/text_styles.dart';
@@ -52,8 +53,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
       builder: (context, state) {
         return state is! UserLoading
             ? Scaffold(
-                appBar:  BaseAppBar(
+                appBar: const BaseAppBar(
                   title: 'Profile',
+
                 ),
                 backgroundColor: CColors.white,
                 body: Container(
@@ -61,6 +63,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   padding: EdgeInsets.fromLTRB(20.pw, 20.ph, 20.pw, 0),
                   child: Column(
                     children: [
+                      SizedBox(
+                        height: 10.ph,
+                      ),
+                      Image.asset(state is UserSuccess && state.user.isTeacher == true ? PngIcons.teacher  : PngIcons.student, height: 150.ph,),
                       SizedBox(
                         height: 20.ph,
                       ),

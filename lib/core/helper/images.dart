@@ -11,6 +11,8 @@ abstract class PngIcons {
   static const String locationPin = '$_path/location_pin.png';
   static const String locationPin2 = '$_path/location_pin2.png';
   static const String compass = '$_path/compass.png';
+  static const String student = '$_path/student.png';
+  static const String teacher = '$_path/teacher.png';
 
 }
 

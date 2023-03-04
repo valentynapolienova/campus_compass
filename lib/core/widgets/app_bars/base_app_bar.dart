@@ -26,21 +26,28 @@ class BaseAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leadingWidth: 50,
+      leadingWidth: 100,
       leading: Align(
         alignment: Alignment.centerLeft,
         child: isBackButton
-            ? Padding(
+            ? Ink(
+          padding: const EdgeInsets.only(left: 8),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: CColors.borderGrey),
+          ),
+              child: Padding(
           padding: CPaddings.horizontal12,
-              child: IconButton(
+                child: IconButton(
           icon: const Icon(
-              Icons.arrow_back_ios,
-              color: CColors.grey,
+                Icons.arrow_back_ios,
+                color: CColors.grey,
           ),
           onPressed: () {
-              Navigator.pop(context);
+                Navigator.pop(context);
           },
         ),
+              ),
             )
             : Padding(
           padding: CPaddings.horizontal12,
@@ -55,7 +62,7 @@ class BaseAppBar extends StatelessWidget with PreferredSizeWidget {
           ),
         )
       ],
-      title: Text(title ?? '', style: gilroy.w700.s20.black,),
+      title: Text(title ?? '', style: gilroy.w700.s24.black,),
       backgroundColor: backgroundColor ?? CColors.white,
       elevation: 0,
       centerTitle: true,
