@@ -29,17 +29,20 @@ class BaseAppBar extends StatelessWidget with PreferredSizeWidget {
       leading: Align(
         alignment: Alignment.centerLeft,
         child: isBackButton
-            ? IconButton(
+            ? Padding(
+          padding: CPaddings.horizontal12,
+              child: IconButton(
           icon: const Icon(
-            Icons.arrow_back_rounded,
-            color: CColors.white,
+              Icons.arrow_back_ios,
+              color: CColors.grey,
           ),
           onPressed: () {
-            Navigator.pop(context);
+              Navigator.pop(context);
           },
-        )
+        ),
+            )
             : Padding(
-          padding: CPaddings.horizontal16,
+          padding: CPaddings.horizontal12,
           child: leftWidget,
         ),
       ),

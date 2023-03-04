@@ -57,6 +57,14 @@ dependencies:
   firebase_core: ^2.7.0
   firebase_messaging: ^14.2.5
 
+flutter_icons:
+  image_path: "assets/images/logo.png"
+  android: true
+  ios: true
+  adaptive_icon_background: '#ffffff'
+  adaptive_icon_foreground: "assets/images/logo.png"
+  remove_alpha_ios: true
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -89,3 +97,14 @@ flutter:
     #       weight: 700
     #     - asset: fonts/Montserrat-Black.ttf
     #       weight: 900
+  fonts:
+    - family: Gilroy
+      fonts:
+        - asset: fonts/gilroy/Gilroy-Regular.ttf
+          weight: 400
+        - asset: fonts/gilroy/Gilroy-Medium.ttf
+          weight: 500
+        - asset: fonts/gilroy/Gilroy-Bold.ttf
+          weight: 700
+        - asset: fonts/gilroy/Gilroy-Black.ttf
+          weight: 900

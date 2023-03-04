@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:int20h/core/style/colors.dart';
+import 'package:int20h/core/style/text_styles.dart';
 import 'package:int20h/core/util/pixel_sizer.dart';
 
 class ProfileTile extends StatelessWidget {
@@ -24,39 +25,45 @@ class ProfileTile extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(16),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: bgColor ?? CColors.white,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Icon(
-                icon,
-                color: iconColor,
-              ),
-            ),
-            SizedBox(
-              width: 10.pw,
-            ),
-            Text(
-              label,
-              //style: montserrat.s15.w500.white,
-            ),
-            const Expanded(
-              child: Align(
-                alignment: Alignment.centerRight,
+      child: Ink(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          color: CColors.white,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: bgColor ?? CColors.white,
+                  borderRadius: BorderRadius.circular(16),
+                ),
                 child: Icon(
-                  Icons.arrow_forward_ios_sharp,
-                  color: CColors.black,
-                  size: 20,
+                  icon,
+                  color: iconColor,
                 ),
               ),
-            ),
-          ],
+              SizedBox(
+                width: 10.pw,
+              ),
+              Text(
+                label,
+                style: gilroy.s15.w500.black,
+              ),
+              const Expanded(
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Icon(
+                    Icons.arrow_forward_ios_sharp,
+                    color: CColors.grey,
+                    size: 20,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

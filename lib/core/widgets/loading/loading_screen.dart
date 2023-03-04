@@ -12,7 +12,7 @@ class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CColors.black,
+      backgroundColor: CColors.white,
       appBar: BaseAppBar(
         isBackButton: !withoutBackButton,
       ),
@@ -20,7 +20,7 @@ class LoadingScreen extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.only(bottom: 100.ph),
           child: const CircularProgressIndicator(
-            color: CColors.black,
+            color: CColors.green,
           ),
         ),
       ),

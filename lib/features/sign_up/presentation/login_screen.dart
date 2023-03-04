@@ -2,11 +2,14 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:int20h/core/helper/images.dart';
 import 'package:int20h/core/helper/notification.dart';
 import 'package:int20h/core/style/colors.dart';
+import 'package:int20h/core/style/text_styles.dart';
 import 'package:int20h/core/util/input_converter.dart';
 import 'package:int20h/core/util/pixel_sizer.dart';
 import 'package:int20h/core/widgets/buttons/base_button.dart';
+import 'package:int20h/features/sign_up/presentation/components/auth_text_field.dart';
 import 'package:int20h/features/sign_up/presentation/registration_screen.dart';
 import 'package:int20h/injection_container.dart';
 
@@ -41,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
       },
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: CColors.black,
+          backgroundColor: CColors.white,
           body: KeyboardDismissOnTap(
             child: SafeArea(
               child: Padding(
@@ -50,15 +53,36 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 30.ph,
+                        height: 50.ph,
+                      ),
+                      Image.asset(
+                        PngIcons.compass,
+                        //color: CColors.green,
+                        height: 100.ph,
                       ),
                       SizedBox(
                         height: 30.ph,
                       ),
-                      TextField(
-                       decoration: const InputDecoration(
+                      Column(
+                        children: [
+                          Text(
+                            'Welcome to CampusCompass!',
+                            style: gilroy.black.w700.s24,
+                          ),
+                          SizedBox(
+                            height: 16.ph,
+                          ),
+                          Text(
+                            'Sign in your account to explore',
+                            style: gilroy.black.w500.s18,
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 30.ph,
+                      ),
+                      AuthTextField(
                          hintText: 'Enter your email',
-                       ),
                         onChanged: (s) {
                           setState(() {
                             email = s;
@@ -69,10 +93,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(
                         height: 12.ph,
                       ),
-                      TextField(
-                        decoration: const InputDecoration(
+                      AuthTextField(
                           hintText: 'Enter your password',
-                        ),
+
                         onChanged: (s) {
                           setState(() {
                             password = s;
@@ -92,8 +115,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 alignment: Alignment.centerLeft,
                                 child: Text(
                                   state.message,
-                                  /*style: montserrat.w500.s13
-                                      .copyWith(color: Colors.red.shade400),*/
+                                  style: gilroy.w500.s13
+                                      .wrong,
                                 ),
                               ),
                             )
@@ -105,11 +128,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       RichText(
                         text: TextSpan(
                           text: 'Don\'t have an account?',
-                          //style: montserrat.white.s14.w500,
+                          style: gilroy.black.s14.w500,
                           children: <TextSpan>[
                             TextSpan(
                                 text: '  Sign up',
-                               // style: montserrat.blue.s14.w500,
+                                style: gilroy.green.s14.w500,
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
                                     Navigator.push(
@@ -136,7 +159,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _button(SignInState state) => BaseButton(
-        label: "Continue",
+    isGradient: true,
+    label: "Continue",
         onTap: () {
           if (InputChecker.checkEmail(email)) {
             cubit.signIn(email, password);

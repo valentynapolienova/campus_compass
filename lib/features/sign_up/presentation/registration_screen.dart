@@ -2,12 +2,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:int20h/core/helper/images.dart';
 import 'package:int20h/core/helper/notification.dart';
 import 'package:int20h/core/style/colors.dart';
+import 'package:int20h/core/style/text_styles.dart';
+import 'package:int20h/core/util/bottom_sheet_opener.dart';
 import 'package:int20h/core/util/input_converter.dart';
 import 'package:int20h/core/util/pixel_sizer.dart';
 import 'package:int20h/core/widgets/app_bars/base_app_bar.dart';
 import 'package:int20h/core/widgets/buttons/base_button.dart';
+import 'package:int20h/features/sign_up/presentation/components/auth_text_field.dart';
+import 'package:int20h/features/sign_up/presentation/components/choose_bottom_sheet.dart';
 import 'package:int20h/injection_container.dart';
 
 import 'cubit/auth_cubit/auth_cubit.dart';
@@ -30,6 +35,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   String name = "";
   String email = "";
   String password = "";
+  int? groupId;
+  int? universityId;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +55,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           appBar: const BaseAppBar(
             isBackButton: true,
           ),
-          backgroundColor: CColors.black,
+          backgroundColor: CColors.white,
           body: KeyboardDismissOnTap(
             child: SafeArea(
               child: Padding(
@@ -57,15 +64,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 30.ph,
+                        height: 10.ph,
+                      ),
+                      Image.asset(
+                        PngIcons.compass,
+                        //color: CColors.green,
+                        height: 100.ph,
                       ),
                       SizedBox(
                         height: 30.ph,
                       ),
-                      TextField(
-                        decoration: const InputDecoration(
+                      AuthTextField(
+
                           hintText: 'Enter your name',
-                        ),
+
                         onChanged: (s) {
                           setState(() {
                             name = s;
@@ -76,10 +88,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       SizedBox(
                         height: 12.ph,
                       ),
-                      TextField(
-                        decoration: const InputDecoration(
+                      AuthTextField(
                           hintText: 'Enter your email',
-                        ),
+
                         onChanged: (s) {
                           setState(() {
                             email = s;
@@ -90,16 +101,44 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       SizedBox(
                         height: 12.ph,
                       ),
-                      TextField(
-                        decoration: const InputDecoration(
+                      AuthTextField(
                           hintText: 'Enter your password',
-                        ),
+
                         onChanged: (s) {
                           setState(() {
                             password = s;
                           });
                         },
                         obscureText: true,
+                      ),
+                      SizedBox(
+                        height: 12.ph,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          showCustomBottomSheet(context,  ChooseBottomSheet(title: "Choose university", options: ["KPI im Ihor Sikorsky", "Another uni", "Another 2"], onTap: () {}, cubit: cubit,),);
+
+                        },
+                        child: AuthTextField(
+                            hintText: 'Choose your university',
+                          onChanged: (s) {
+                          },
+                         enabled: false,
+                        ),
+                      ), SizedBox(
+                        height: 12.ph,
+                      ),
+                      InkWell(
+                        onTap: (){
+                          showCustomBottomSheet(context,  ChooseBottomSheet(title: "Choose university", options: ["KPI im Ihor Sikorsky"], onTap: () {}, cubit: cubit,),);
+
+                        },
+                        child: AuthTextField(
+                            hintText: 'Choose your group',
+                          onChanged: (s) {
+                          },
+                          enabled: false,
+                        ),
                       ),
                       SizedBox(
                         height: 30.ph,
@@ -113,8 +152,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                 alignment: Alignment.centerLeft,
                                 child: Text(
                                   'Email is incorrect',
-                                 /* style: montserrat.w500.s13
-                                      .copyWith(color: Colors.red.shade400),*/
+                                  style: gilroy.w500.s13
+                                      .copyWith(color: Colors.red.shade400),
                                 ),
                               ),
                             )
@@ -132,6 +171,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   }
 
   Widget _button(SignUpState state) => BaseButton(
+    isGradient: true,
         label: "Continue",
         onTap: () {
           if (InputChecker.checkEmail(email)) {
@@ -144,4 +184,5 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         isLoading: state is SignUpLoading,
         padding: EdgeInsets.symmetric(horizontal: 16.pw, vertical: 14.ph),
       );
+
 }

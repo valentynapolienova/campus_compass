@@ -12,13 +12,13 @@ BaseInputDecoration get cOutlineInputDecoration =>
 class CustomOutlineInputDecoration extends BaseInputDecoration {
   CustomOutlineInputDecoration()
       : super(
-          textStyle: font.black.s12.w500,
+          textStyle: gilroy.black.s12.w500,
           border: COutlineInputBorders.inactiveTextField,
           enabledBorder: COutlineInputBorders.inactiveTextField,
           focusedBorder: COutlineInputBorders.activeTextField,
           filled: true,
           fillColor: CColors.white,
-          hintStyle: font.black.s14.w500,
+          hintStyle: gilroy.black.s14.w500,
         );
 }
 

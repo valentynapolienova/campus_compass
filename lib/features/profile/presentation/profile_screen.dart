@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:int20h/core/helper/notification.dart';
 import 'package:int20h/core/style/colors.dart';
+import 'package:int20h/core/style/text_styles.dart';
 import 'package:int20h/core/util/pixel_sizer.dart';
 import 'package:int20h/core/util/url_opener.dart';
 import 'package:int20h/core/widgets/app_bars/base_app_bar.dart';
@@ -39,10 +40,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
       listener: (context, state) {
         if (state is UserFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+             SnackBar(
               content: Text(
                 'Unexpected error occurred',
-                //style: montserrat.s14.white.w500,
+                style: gilroy.s14.white.w500,
               ),
             ),
           );
@@ -51,10 +52,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
       builder: (context, state) {
         return state is! UserLoading
             ? Scaffold(
-                appBar: const BaseAppBar(
-                  centerWidget: Text('Profile'),
+                appBar:  BaseAppBar(
+                  centerWidget: Text('Profile', style: gilroy.w700.s20.black,),
                 ),
-                backgroundColor: CColors.black,
+                backgroundColor: CColors.white,
                 body: Container(
                   width: double.infinity,
                   padding: EdgeInsets.fromLTRB(20.pw, 20.ph, 20.pw, 0),
@@ -68,7 +69,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           state is UserSuccess
                               ? state.user.name ?? state.user.email ?? 'User'
                               : 'User',
-                          //style: montserrat.s18.w500.white,
+                          style: gilroy.s18.w500.black,
                         ),
                       ),
                       SizedBox(
@@ -90,6 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         label: 'Logout',
                         icon: Icons.logout,
                         iconColor: Colors.red,
+                        bgColor: Colors.redAccent.withOpacity(0.1),
                         onTap: () async {
                           widget.authCubit.removeUserSession();
                           sl<SignInCubit>().deleteFirebaseToken(FCM.fbToken);

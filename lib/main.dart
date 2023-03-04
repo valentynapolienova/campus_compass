@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:int20h/features/profile/domain/entities/user.dart';
+import 'package:int20h/features/sign_up/domain/entities/auth_response.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'dart:io';
 

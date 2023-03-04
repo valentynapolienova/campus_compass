@@ -44,7 +44,7 @@ abstract class AppConfig {
 class DevConfig extends AppConfig {
   DevConfig()
       : super._(
-          apiHostName: 'dev.com',
+          apiHostName: 'hahaton-env.eba-cedhfppr.eu-central-1.elasticbeanstalk.com/',
           isProductionEnvironment: false,
         );
 }
@@ -52,7 +52,7 @@ class DevConfig extends AppConfig {
 class ProdConfig extends AppConfig {
   ProdConfig()
       : super._(
-          apiHostName: 'prod.com',
+          apiHostName: 'hahaton-env.eba-cedhfppr.eu-central-1.elasticbeanstalk.com/',
           isProductionEnvironment: true,
         );
 }

@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 
 import 'colors.dart';
 
-const _fontFontName = 'font';
+const _fontFontName = 'gilroy';
 
-CTextStyle get font => const Font();
+CTextStyle get gilroy => const Gilroy();
 
-class Font extends CTextStyle {
-  const Font()
+class Gilroy extends CTextStyle {
+  const Gilroy()
       : super._(
           fontFamily: _fontFontName,
           fontSize: 14.0,
@@ -131,6 +131,12 @@ class CTextStyle extends TextStyle {
   CTextStyle get white => copyWith(color: CColors.white);
 
   CTextStyle get black => copyWith(color: CColors.black);
+
+  CTextStyle get green => copyWith(color: CColors.green);
+
+  CTextStyle get grey => copyWith(color: CColors.grey);
+
+  CTextStyle get wrong => copyWith(color: CColors.wrong);
 
   // heights
   CTextStyle get h13 => copyWith(height: 1.35);
