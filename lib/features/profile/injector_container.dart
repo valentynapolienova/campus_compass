@@ -13,16 +13,18 @@ mixin ProfileInjector on Injector {
     final Dio dio = sl<Dio>(instanceName: globalDio);
 
     // cubits
-    sl.registerFactory(() => UserCubit(repository: sl()));
+    sl.registerLazySingleton(() => UserCubit(repository: sl()));
 
     // repositories
-    sl.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImpl(profileDatasource: sl(),));
+    sl.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImpl(
+          profileDatasource: sl(),
+        ));
 
     // data sources
-    sl.registerLazySingleton<ProfileDatasource>(() => ProfileDatasourceImpl(dio: dio));
+    sl.registerLazySingleton<ProfileDatasource>(
+        () => ProfileDatasourceImpl(dio: dio));
 
     // use case
     sl.registerLazySingleton(() => GetUserUsecase(repository: sl()));
-
   }
 }

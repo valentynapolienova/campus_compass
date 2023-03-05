@@ -1,5 +1,9 @@
-import 'package:int20h/injection_container.dart';
 import 'package:dio/dio.dart';
+import 'package:int20h/features/schedule/data/datasource/schedule_datasource.dart';
+import 'package:int20h/features/schedule/data/repositories/schedule_repository_impl.dart';
+import 'package:int20h/features/schedule/domain/repositories/schedule_repository.dart';
+import 'package:int20h/features/schedule/presentation/cubit/schedule_cubit.dart';
+import 'package:int20h/injection_container.dart';
 
 mixin ScheduleInjector on Injector {
   @override
@@ -8,13 +12,16 @@ mixin ScheduleInjector on Injector {
     final Dio dio = sl<Dio>(instanceName: globalDio);
 
     // cubits
-    //sl.registerFactory(() => Cubit(repository: sl()));
+    sl.registerLazySingleton(
+        () => ScheduleCubit(repository: sl(), mapRepository: sl()));
 
     // repositories
+    sl.registerLazySingleton<ScheduleRepository>(() => ScheduleRepositoryImpl(
+          scheduleDatasource: sl(),
+        ));
 
     // data sources
-
-    // use case
-
+    sl.registerLazySingleton<ScheduleDatasource>(
+        () => ScheduleDatasourceImpl(dio: dio));
   }
 }

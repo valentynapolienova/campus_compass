@@ -41,7 +41,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       listener: (context, state) {
         if (state is UserFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
-             SnackBar(
+            SnackBar(
               content: Text(
                 'Unexpected error occurred',
                 style: gilroy.s14.white.w500,
@@ -55,7 +55,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ? Scaffold(
                 appBar: const BaseAppBar(
                   title: 'Profile',
-
                 ),
                 backgroundColor: CColors.white,
                 body: Container(
@@ -66,7 +65,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       SizedBox(
                         height: 10.ph,
                       ),
-                      Image.asset(state is UserSuccess && state.user.isTeacher == true ? PngIcons.teacher  : PngIcons.student, height: 150.ph,),
+                      Image.asset(
+                        state is UserSuccess && state.user.isTeacher == true
+                            ? PngIcons.teacher
+                            : PngIcons.student,
+                        height: 150.ph,
+                      ),
                       SizedBox(
                         height: 20.ph,
                       ),

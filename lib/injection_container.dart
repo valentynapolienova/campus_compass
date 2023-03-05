@@ -11,12 +11,21 @@ import 'app_config.dart';
 import 'core/interceptors/error_logger_interceptor.dart';
 import 'core/network/network_info.dart';
 import 'features/bottom_nav_bar/injection_container.dart';
+import 'features/notifications/injection_container.dart';
+import 'features/schedule/injection_container.dart';
 
 final sl = GetIt.instance;
 
 const globalDio = 'global';
 
-class InjectionContainer extends Injector with AuthInjector, ProfileInjector, BottomNavBarInjector, MapInjector{}
+class InjectionContainer extends Injector
+    with
+        AuthInjector,
+        ProfileInjector,
+        BottomNavBarInjector,
+        MapInjector,
+        ScheduleInjector,
+        NotificationsInjector {}
 
 abstract class Injector {
   @mustCallSuper

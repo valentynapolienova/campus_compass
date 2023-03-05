@@ -13,7 +13,7 @@ abstract class PngIcons {
   static const String compass = '$_path/compass.png';
   static const String student = '$_path/student.png';
   static const String teacher = '$_path/teacher.png';
-
+  static const String noMessages = '$_path/no_messages.png';
 }
 
 abstract class JpgImages {

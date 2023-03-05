@@ -10,5 +10,6 @@ abstract class CColors {
   static const lightGrey = Color(0xffF4F6F6);
   static const borderGrey = Color(0xffE5E7E9);
   static const orange = Color(0xffFF744A);
+  static const lightOrange = Color(0xffFFECDA);
   static const wrong = Color(0xffFF5454);
 }

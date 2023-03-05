@@ -10,7 +10,6 @@ import 'package:int20h/features/map/domain/entities/location.dart';
 import 'package:dio/dio.dart';
 
 abstract class MapDatasource {
-
   Future<List<Comment>> getCommentsLocation(int id);
 
   Future<List<Comment>> getClassroomComments(int id);
@@ -34,25 +33,23 @@ class MapDatasourceImpl extends MapDatasource {
   @override
   Future<List<Comment>> getCommentsLocation(int id) async {
     final response = await dio.get('/comment/location/$id');
-    print(response);
     List<Comment> commentList = [];
-    response.data.forEach((element) => commentList.add(CommentModel.fromJson(element)));
+    response.data
+        .forEach((element) => commentList.add(CommentModel.fromJson(element)));
     return commentList;
   }
 
   @override
   Future<Comment> commentLocation(CommentParam commentParam) async {
-    final response = await dio.post('/comment/location/${commentParam.id}', data: {
-      "text" : commentParam.comment
-    });
+    final response = await dio.post('/comment/location/${commentParam.id}',
+        data: {"text": commentParam.comment});
     return CommentModel.fromJson(response.data);
   }
 
   @override
   Future<Comment> commentClassroom(CommentParam commentParam) async {
-    final response = await dio.post('/comment/auditory/${commentParam.id}', data: {
-      "text" : commentParam.comment
-    });
+    final response = await dio.post('/comment/auditory/${commentParam.id}',
+        data: {"text": commentParam.comment});
     return CommentModel.fromJson(response.data);
   }
 
@@ -61,7 +58,8 @@ class MapDatasourceImpl extends MapDatasource {
     final response = await dio.get('/comment/auditory/$id');
 
     List<Comment> commentList = [];
-    response.data.forEach((element) => commentList.add(CommentModel.fromJson(element)));
+    response.data
+        .forEach((element) => commentList.add(CommentModel.fromJson(element)));
     return commentList;
   }
 
@@ -69,7 +67,8 @@ class MapDatasourceImpl extends MapDatasource {
   Future<List<Classrom>> getClassrooms(int id) async {
     final response = await dio.get('/auditory/location/$id');
     List<Classrom> classromList = [];
-    response.data.forEach((element) => classromList.add(ClassromModel.fromJson(element)));
+    response.data.forEach(
+        (element) => classromList.add(ClassromModel.fromJson(element)));
     return classromList;
   }
 
@@ -89,7 +88,8 @@ class MapDatasourceImpl extends MapDatasource {
   Future<List<Location>> getLocations() async {
     final response = await dio.get('/location/user');
     List<Location> locationList = [];
-    response.data.forEach((element) => locationList.add(LocationModel.fromJson(element)));
+    response.data.forEach(
+        (element) => locationList.add(LocationModel.fromJson(element)));
     return locationList;
   }
 }
