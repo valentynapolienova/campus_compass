@@ -18,6 +18,7 @@ class ScheduleDatasourceImpl extends ScheduleDatasource {
 
   @override
   Future<ScheduleItem> changeEventDate(int id, String newDate) async {
+    print(id);
     final response = await dio.put('/event', data: {"date": newDate, "id": id});
 
     return ScheduleItemModel.fromJson(response.data);
@@ -25,9 +26,10 @@ class ScheduleDatasourceImpl extends ScheduleDatasource {
 
   @override
   Future<ScheduleItem> changeEventClassroom(int id, int classId) async {
-    final response = await dio.put('/event', data: { "auditory": {
-      "id": classId
-    }, "id": id});
+    final response = await dio.put('/event', data: {
+      "auditory": {"id": classId},
+      "id": id
+    });
 
     return ScheduleItemModel.fromJson(response.data);
   }

@@ -147,7 +147,7 @@ class NotificationTile extends StatelessWidget {
 
   String getFormattedTimeWeekDate(String date) {
     DateTime dateTime = getDateTimeFromString(date);
-    String formattedDate = DateFormat('dd.mm.yy').format(dateTime);
+    String formattedDate = DateFormat('dd.MM.yy').format(dateTime);
     return formattedDate;
   }
 

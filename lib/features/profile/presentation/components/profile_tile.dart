@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:int20h/core/style/colors.dart';
 import 'package:int20h/core/style/paddings.dart';
@@ -33,7 +32,7 @@ class ProfileTile extends StatelessWidget {
           border: Border.all(color: CColors.borderGrey),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
           child: Row(
             children: [
               Container(
@@ -54,7 +53,7 @@ class ProfileTile extends StatelessWidget {
                 label,
                 style: gilroy.s15.w500.black,
               ),
-               Expanded(
+              Expanded(
                 child: Align(
                   alignment: Alignment.centerRight,
                   child: Container(

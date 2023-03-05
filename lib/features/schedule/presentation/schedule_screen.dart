@@ -151,7 +151,7 @@ class TimeRow extends StatelessWidget {
               child: state is ScheduleSuccess
                   ? InkWell(
                       onTap: () {
-                        if (sl<UserCubit>().state.user.isTeacher != true) {
+                        if (sl<UserCubit>().state.user.isTeacher == true) {
                           sl<ScheduleCubit>()
                               .getClassrooms(scheduleItem.location?.id ?? -1);
                           showCustomBottomSheet(
@@ -395,7 +395,7 @@ class ChangeTile extends StatelessWidget {
       },
       child: Row(
         children: [
-          Container(
+          Ink(
             padding: const EdgeInsets.all(16),
             decoration: const BoxDecoration(
               color: CColors.lightOrange,
@@ -415,7 +415,7 @@ class ChangeTile extends StatelessWidget {
           )
         ],
       ),
-    ).noSplash();
+    ).withHapticFeedback();
   }
 }
 
@@ -441,6 +441,7 @@ class _ChangeClassroomDialogState extends State<ChangeClassroomDialog> {
 
   @override
   void initState() {
+    cubit = sl();
     cubit.getClassrooms(widget.locationId);
     super.initState();
   }
@@ -448,6 +449,7 @@ class _ChangeClassroomDialogState extends State<ChangeClassroomDialog> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ScheduleCubit, ScheduleState>(
+      bloc: cubit,
       builder: (context, state) {
         return state is ScheduleSuccess
             ? AlertDialog(
@@ -498,11 +500,12 @@ class _ChangeClassroomDialogState extends State<ChangeClassroomDialog> {
                                   .firstWhere((element) => element.name == name,
                                       orElse: () => Classrom())
                                   .id ??
-                              -1);
+                              -1,
+                          () {});
                       Navigator.pop(context);
                     },
                     child: Text(
-                      'Add',
+                      'Edit',
                       style: gilroy.s14.green.w400,
                     ),
                   ),

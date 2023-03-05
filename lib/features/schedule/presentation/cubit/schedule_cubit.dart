@@ -47,27 +47,24 @@ class ScheduleCubit extends Cubit<ScheduleState> {
             classrooms: data)));
   }
 
-  changeClassroom(int id, int classId) async {
+  changeClassroom(int id, int classId, Function callback) async {
     final result = await repository.changeEventClassroom(id, classId);
-    //getSchedule();
+    getSchedule();
+    callback();
     print(result);
   }
 
   changeTime(String prevDate, TimeOfDay? time, int id) async {
-    print(prevDate);
-    print(time?.hour);
     if (time != null) {
       String newTime = prevDate.substring(0, 11) +
-          time.hour.toString() +
+          '${time.hour.toString().length > 1 ? time.hour.toString() : '0${time.hour.toString()}'}' +
           ':' +
-          time.minute.toString() +
+          '${time.minute.toString().length > 1 ? time.minute.toString() : '0${time.minute.toString()}'}' +
           ':' +
           '00' +
           '.855+00:00';
-      print(newTime);
       final result = await repository.changeEventDate(id, newTime);
-      //getSchedule();
-      print(result);
+      getSchedule();
     }
   }
 }
