@@ -152,7 +152,7 @@ class TimeRow extends StatelessWidget {
               child: state is ScheduleSuccess
                   ? InkWell(
                       onTap: () {
-                        if (sl<UserCubit>().state.user.isTeacher == true) {
+                        if (sl<UserCubit>().state.user.isTeacher != true) {
                           sl<ScheduleCubit>()
                               .getClassrooms(scheduleItem.location?.id ?? -1);
                           showCustomBottomSheet(
@@ -305,67 +305,11 @@ class TimeRow extends StatelessWidget {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          String name = scheduleItem.classrom?.name ?? '';
-          return StatefulBuilder(builder: (context, dialogState) {
-            return AlertDialog(
-              backgroundColor: CColors.white,
-              title: Text(
-                'Choose another classroom',
-                style: gilroy.s18.black.w500,
-              ),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  DropdownButton<String>(
-                    value: name,
-                    onChanged: (String? newValue) {
-                      dialogState(() {
-                        name = newValue!;
-                      });
-                    },
-                    items: List.generate(
-                      classrooms.length,
-                      (index) => DropdownMenuItem(
-                        value: classrooms[index].name ?? '',
-                        child: Text(
-                          classrooms[index].name ?? '',
-                          style: gilroy.black.s14.w500,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    'Cancel',
-                    style: gilroy.s14.black.w400,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    sl<ScheduleCubit>().changeClassroom(
-                        scheduleItem.id ?? -1,
-                        classrooms
-                                .firstWhere((element) => element.name == name,
-                                    orElse: () => Classrom())
-                                .id ??
-                            -1);
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    'Add',
-                    style: gilroy.s14.green.w400,
-                  ),
-                ),
-              ],
-            );
-          });
+          return ChangeClassroomDialog(
+            locationId: scheduleItem.location?.id ?? -1,
+            name: scheduleItem.classrom?.name ?? '',
+            scheduleId: scheduleItem.id ?? -1,
+          );
         });
   }
 
@@ -473,5 +417,100 @@ class ChangeTile extends StatelessWidget {
         ],
       ),
     ).noSplash();
+  }
+}
+
+class ChangeClassroomDialog extends StatefulWidget {
+  const ChangeClassroomDialog(
+      {Key? key,
+      required this.locationId,
+      required this.name,
+      required this.scheduleId})
+      : super(key: key);
+
+  final int locationId;
+  final int scheduleId;
+  final String name;
+
+  @override
+  State<ChangeClassroomDialog> createState() => _ChangeClassroomDialogState();
+}
+
+class _ChangeClassroomDialogState extends State<ChangeClassroomDialog> {
+  late ScheduleCubit cubit;
+  late String name = widget.name;
+
+  @override
+  void initState() {
+    cubit.getClassrooms(widget.locationId);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ScheduleCubit, ScheduleState>(
+      builder: (context, state) {
+        return state is ScheduleSuccess
+            ? AlertDialog(
+                backgroundColor: CColors.white,
+                title: Text(
+                  'Choose another classroom',
+                  style: gilroy.s18.black.w500,
+                ),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    DropdownButton<String>(
+                      value: name,
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          name = newValue!;
+                        });
+                      },
+                      items: List.generate(
+                        state.classrooms.length,
+                        (index) => DropdownMenuItem(
+                          value: state.classrooms[index].name ?? '',
+                          child: Text(
+                            state.classrooms[index].name ?? '',
+                            style: gilroy.black.s14.w500,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      'Cancel',
+                      style: gilroy.s14.black.w400,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      sl<ScheduleCubit>().changeClassroom(
+                          widget.scheduleId,
+                          state.classrooms
+                                  .firstWhere((element) => element.name == name,
+                                      orElse: () => Classrom())
+                                  .id ??
+                              -1);
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      'Add',
+                      style: gilroy.s14.green.w400,
+                    ),
+                  ),
+                ],
+              )
+            : const SizedBox();
+      },
+    );
   }
 }

@@ -49,6 +49,7 @@ class ScheduleCubit extends Cubit<ScheduleState> {
 
   changeClassroom(int id, int classId) async {
     final result = await repository.changeEventClassroom(id, classId);
+    //getSchedule();
     print(result);
   }
 
@@ -65,6 +66,7 @@ class ScheduleCubit extends Cubit<ScheduleState> {
           '.855+00:00';
       print(newTime);
       final result = await repository.changeEventDate(id, newTime);
+      //getSchedule();
       print(result);
     }
   }
