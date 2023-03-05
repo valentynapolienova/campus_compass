@@ -14,6 +14,7 @@ abstract class PngIcons {
   static const String student = '$_path/student.png';
   static const String teacher = '$_path/teacher.png';
   static const String noMessages = '$_path/no_messages.png';
+  static const String calendar = '$_path/calendar.png';
 }
 
 abstract class JpgImages {
