@@ -9,6 +9,7 @@ This application is created for students in order to simplify campus navigation.
 Each student can add a new location on the map. Another users can explore each location and leave comments.
 
 [LINK TO TEST AN ANDROID APPLICATION (FIREBASE)](https://appdistribution.firebase.dev/i/ec9188185ac42728)
+
 [LINK TO GOOGLE DISK(.apk file)](https://drive.google.com/file/d/11WLOr9gDRIiZMg2LqCce0nrqL2E8c0_e/view?usp=sharing)
 
 
