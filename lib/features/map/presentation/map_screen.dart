@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:int20h/core/helper/extensions.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:int20h/core/helper/images.dart';
+import 'package:int20h/core/style/border_radiuses.dart';
 import 'package:int20h/core/style/colors.dart';
+import 'package:int20h/core/style/paddings.dart';
+import 'package:int20h/core/style/text_styles.dart';
+import 'package:int20h/core/util/bottom_sheet_opener.dart';
+import 'package:int20h/core/widgets/buttons/base_button.dart';
 import 'package:int20h/core/widgets/loading/loading_screen.dart';
+import 'package:int20h/core/widgets/templates/bottom_sheet_template.dart';
 import 'package:int20h/features/map/domain/entities/location.dart';
 import 'package:int20h/features/map/presentation/cubit/map_cubit.dart';
+import 'package:int20h/features/map/presentation/location_details.dart';
 import 'package:int20h/features/map/presentation/map_add_screen.dart';
 import 'package:int20h/injection_container.dart';
 import 'dart:ui' as ui;
@@ -26,6 +33,7 @@ class _MapScreenState extends State<MapScreen> {
   Uint8List? markerIcon;
   GoogleMapController? mapController;
   MapType mapType = MapType.normal;
+  String location = "";
 
   @override
   void initState() {
@@ -90,6 +98,9 @@ class _MapScreenState extends State<MapScreen> {
             markers: List.generate(state.locations.length, (index) {
               Location location = state.locations[index];
               return Marker(
+                onTap: () {
+                  showCustomBottomSheet(context, InfoBottomSheet(location: location), true);
+                },
                 icon: markerIcon != null ? BitmapDescriptor.fromBytes(markerIcon!) : BitmapDescriptor.defaultMarker,
                 markerId: MarkerId("marker$index"),
                 position: LatLng(location.latitude ?? 0, location.longitude ?? 0),
@@ -103,6 +114,7 @@ class _MapScreenState extends State<MapScreen> {
       },
     );
   }
+
 
   void addCustomIcon() async{
     final marker = await getBytesFromAsset(PngIcons.locationMark, 150);
@@ -160,4 +172,57 @@ class _MapScreenState extends State<MapScreen> {
     return await Geolocator.getCurrentPosition();
   }*/
 
+}
+
+class InfoBottomSheet extends StatelessWidget {
+  const InfoBottomSheet({
+    super.key,required this.location
+  });
+
+  final Location location;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(30, 0, 30, 120),
+        child: BottomSheetTemplate(child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: CBorderRadius.all12,
+                  child: location.imgUrl != null ? Image.network(location.imgUrl!, height: 180, width: double.infinity, fit: BoxFit.fitWidth,) :Image.asset(PngImages.location, height: 180, width: double.infinity, fit: BoxFit.fitWidth,)),
+              const SizedBox(height: 15,),
+              Text(location.name ?? '', style: gilroy.w700.black.s18, maxLines: 1, overflow: TextOverflow.ellipsis,),
+              location.description!= null && location.description!.isNotEmpty ? Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Text(location.description!,  maxLines: 2, overflow: TextOverflow.ellipsis, style: gilroy.s14.w500.black,)) : const SizedBox(),
+              const SizedBox(height: 10,),
+              Row(
+                children: [
+                  Container(
+                    padding: CPaddings.all5,
+                    decoration: const  BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: CColors.lightGreen,
+                    ),
+                    child: const Icon(Icons.school_outlined, color: CColors.green, size: 20,),
+                  ),
+                  const SizedBox(width: 8,),
+                  Text(location.type?.capitalizeFirst().replaceAll("_", " ") ?? '', style: gilroy.w500.green.s14,),
+                ],
+              ),
+              const SizedBox(height: 10,),
+BaseButton(onTap: () {
+  Navigator.pop(context);
+  Navigator.push(context, MaterialPageRoute(builder: (_) =>  LocationDetails(location: location) ));
+}, label: "Show details"),
+            ],
+          ),
+        ),),
+      ),
+    );
+  }
 }

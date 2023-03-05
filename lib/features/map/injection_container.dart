@@ -1,3 +1,4 @@
+import 'package:int20h/features/map/domain/use_cases/get_classrooms_usecase.dart';
 import 'package:int20h/features/map/data/datasource/map_datasource.dart';
 import 'package:int20h/features/map/domain/repositories/map_repository.dart';
 import 'package:int20h/features/map/data/repositories/map_repository_impl.dart';
@@ -23,6 +24,7 @@ mixin MapInjector on Injector {
     sl.registerLazySingleton<MapDatasource>(() => MapDatasourceImpl(dio: dio));
 
     // use case
+    sl.registerLazySingleton(() => GetClassroomsUsecase(repository: sl()));
 
   }
 }

@@ -24,4 +24,5 @@ abstract class PngImages {
   static const String _path = 'assets/images';
 
   static const String logo = 'assets/images/logo.png';
+  static const String location = 'assets/images/location.png';
 }

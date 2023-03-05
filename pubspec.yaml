@@ -22,17 +22,13 @@ dependencies:
   bot_toast: ^4.0.3
   google_maps_flutter: ^2.2.5
   geolocator: ^9.0.2
-  expandable_bottom_sheet: ^1.1.1+1
   sliding_up_panel: ^2.0.0+1
-
-
 
   #logic
   get_it: ^7.2.0
   flutter_bloc: ^8.1.1
   equatable: ^2.0.5
   dartz: ^0.10.1
-  rxdart: ^0.27.5
   flutter_keyboard_visibility: ^5.4.0
 
 

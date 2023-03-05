@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
+extension StringExtension on String {
+  String capitalizeFirst() {
+    return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
+  }
+}
+
 extension DoubleExtension on double {
   String get decimalZeroFormat {
     return this.toStringAsFixed(this.truncateToDouble() == this ? 0 : 1);

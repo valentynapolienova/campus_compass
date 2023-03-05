@@ -62,8 +62,8 @@ class BaseButton extends StatelessWidget {
                       textAlign: TextAlign.center,
                     )
                   : const SizedBox(
-                      height: 17,
-                      width: 17,
+                      height: 20,
+                      width: 20,
                       child: CircularProgressIndicator(
                         color: CColors.white,
                         strokeWidth: 2,
