@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:int20h/core/helper/consts.dart';
+import 'package:int20h/core/helper/images.dart';
 import 'package:int20h/core/helper/widget_ext.dart';
 import 'package:int20h/core/style/colors.dart';
 import 'package:int20h/core/style/text_styles.dart';
 import 'package:int20h/core/util/bottom_sheet_opener.dart';
 import 'package:int20h/core/util/pixel_sizer.dart';
 import 'package:int20h/core/widgets/app_bars/base_app_bar.dart';
+import 'package:int20h/core/widgets/loading/loading_screen.dart';
 import 'package:int20h/core/widgets/templates/bottom_sheet_template.dart';
 import 'package:int20h/features/map/domain/entities/classrom.dart';
 import 'package:int20h/features/profile/presentation/cubit/user/user_cubit.dart';
@@ -100,14 +102,11 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                           ),
                         ),
                       )
-                    : Center(
-                        child: Text(
-                          'No current schedule',
-                          style: gilroy.w500.s24.black,
-                        ),
-                      ),
+                    : const NoSchedule(),
               )
-            : const SizedBox();
+            : const LoadingScreen(
+                withoutBackButton: true,
+              );
       },
     );
   }
@@ -511,6 +510,42 @@ class _ChangeClassroomDialogState extends State<ChangeClassroomDialog> {
               )
             : const SizedBox();
       },
+    );
+  }
+}
+
+class NoSchedule extends StatelessWidget {
+  const NoSchedule({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            height: 150.ph,
+          ),
+          Text(
+            'You don\'t have an actual schedule',
+            style: gilroy.s18.w500.black,
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(
+            height: 50.ph,
+          ),
+          Image.asset(
+            PngIcons.calendar,
+            color: CColors.green,
+            height: 120.pw,
+            width: 120.pw,
+          ),
+          SizedBox(
+            height: 30.ph,
+          ),
+        ],
+      ),
     );
   }
 }
