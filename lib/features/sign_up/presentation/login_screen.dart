@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 30.ph,
                       ),
                       AuthTextField(
-                         hintText: 'Enter your email',
+                        hintText: 'Enter your email',
                         onChanged: (s) {
                           setState(() {
                             email = s;
@@ -94,8 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 12.ph,
                       ),
                       AuthTextField(
-                          hintText: 'Enter your password',
-
+                        hintText: 'Enter your password',
                         onChanged: (s) {
                           setState(() {
                             password = s;
@@ -115,8 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 alignment: Alignment.centerLeft,
                                 child: Text(
                                   state.message,
-                                  style: gilroy.w500.s13
-                                      .wrong,
+                                  style: gilroy.w500.s13.wrong,
                                 ),
                               ),
                             )
@@ -159,8 +157,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _button(SignInState state) => BaseButton(
-    isGradient: true,
-    label: "Continue",
+        isGradient: true,
+        label: "Continue",
         onTap: () {
           if (InputChecker.checkEmail(email)) {
             cubit.signIn(email, password);
