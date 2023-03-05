@@ -8,7 +8,7 @@ This application is created for students in order to simplify campus navigation.
 
 Each student can add a new location on the map. Another users can explore each location and leave comments.
 
-LINK TO TEST AN ANDROID APPLICATION (FIREBASE)
+[LINK TO TEST AN ANDROID APPLICATION (FIREBASE)](https://appdistribution.firebase.google.com/testerapps/1:772774871205:android:3b98c861edce9c6b574d4c/releases/0gkq49b99dqro?utm_source=firebase-console)
 
 
 ![Simulator Screen Shot - iPhone 14 - 2023-03-05 at 06 27 06](https://user-images.githubusercontent.com/55760070/222942098-96597a22-5dd4-4c3e-8b99-0b6e647a77a7.png)
